@@ -369,34 +369,34 @@ export default function AntrianApprovalPage() {
           </div>
 
           {/* Tab + Filter */}
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-1">
-              {(["Menunggu Saya", "Diteruskan", "Selesai"] as Tab[]).map((tab) => (
+        <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-1.5 p-1 bg-stone-200/40 rounded-full border border-stone-200/60">
+                {(["Menunggu Saya", "Diteruskan", "Selesai"] as Tab[]).map((tab) => (
                 <button
-                  key={tab}
-                  onClick={() => handleTabChange(tab)}
-                  className={`px-4 py-2 text-[13px] rounded-full font-medium transition-all duration-200 flex items-center gap-1.5 ${
+                    key={tab}
+                    onClick={() => handleTabChange(tab)}
+                    className={`px-4 py-1.5 text-[13px] rounded-full transition-all duration-200 flex items-center gap-1.5 ${
                     activeTab === tab
-                      ? "bg-stone-800 text-white shadow-sm"
-                      : "text-stone-500 hover:text-stone-700 hover:bg-stone-200/50"
-                  }`}
-                >
-                  {tab}
-                  <span
-                    className={`text-[11px] font-bold px-1.5 py-0.5 rounded-full ${
-                      activeTab === tab ? "bg-white/20 text-white" : "bg-stone-200 text-stone-500"
+                        ? "bg-white text-stone-900 font-semibold shadow-sm"
+                        : "text-stone-500 font-medium hover:text-stone-700 hover:bg-stone-200/50"
                     }`}
-                  >
+                >
+                    {tab}
+                    <span
+                    className={`text-[11px] font-bold px-1.5 py-0.5 rounded-full ${
+                        activeTab === tab ? "bg-stone-100 text-stone-600" : "bg-stone-200/70 text-stone-400"
+                    }`}
+                    >
                     {tabCounts[tab]}
-                  </span>
+                    </span>
                 </button>
-              ))}
+                ))}
             </div>
 
             <button className="flex items-center gap-2 px-4 py-2 bg-white border border-stone-200 rounded-full shadow-sm text-[13px] font-medium text-stone-700 hover:bg-stone-50 transition">
-              <Filter size={14} className="text-stone-500" /> Filter
+                <Filter size={14} className="text-stone-500" /> Filter
             </button>
-          </div>
+        </div>
 
           {/* Layout dua kolom */}
           <div className="flex gap-5 items-start">
