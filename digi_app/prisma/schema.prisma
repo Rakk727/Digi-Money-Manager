@@ -23,6 +23,8 @@ model User {
   proyek          Proyek?         @relation(fields: [proyekId], references: [id])
   reimbursements  Reimbursement[]
   approvals       Approval[]
+  auditTrails     AuditTrail[]
+  notifications   Notification[]
 
   @@map("users")
 }
@@ -130,4 +132,29 @@ model ChartOfAccounts {
   jurnalKredit  JurnalAkuntansi[] @relation("KreditAccount")
 
   @@map("chart_of_accounts")
+}
+
+model AuditTrail {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  aksi      String   // submit, approve, tolak, jurnal
+  detail    String   // detail deskripsi
+  timestamp DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("audit_trail")
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  tipe      String   // alert, status_update, approval_request
+  pesan     String
+  dibaca    Boolean  @default(false)
+  timestamp DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("notifications")
 }
