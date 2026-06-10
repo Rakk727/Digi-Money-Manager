@@ -70,7 +70,6 @@ async function verifyJWT(token: string, secret: string): Promise<any | null> {
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
-
   // 1. Exclude public static files, images, login pages, and register page
   if (
     pathname.startsWith('/_next') ||
@@ -85,6 +84,7 @@ export async function middleware(req: NextRequest) {
   ) {
     return NextResponse.next();
   }
+
 
   // 2. Get auth token
   let token = req.cookies.get('auth_token')?.value;
@@ -168,6 +168,7 @@ export async function middleware(req: NextRequest) {
   }
 
   // Valid session, store parsed payload headers for upstream API handlers
+// Valid session, store parsed payload headers for upstream API handlers
   const requestHeaders = new Headers(req.headers);
   requestHeaders.set('x-user-id', String(payload.id));
   requestHeaders.set('x-user-email', String(payload.email));
